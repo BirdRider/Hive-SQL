@@ -178,6 +178,20 @@ select  1 from student where 1=0 or (1=1 and 1 = 0);
 -- date_format('2022-01-09', 'yyyyWW')
 date_format 转化为周时，按照周日为一周的第一天
 
+-- 常用日期
+year()
+quarter()
+month()
+
+trunc('2022-05-01', 'Q') -- 本季度首日
+trunc(add_months('2022-05-01', -3), 'Q') -- 上季度首日
+trunc('2022-05-01', 'MM') -- 本月首日
+dayofweek('2022-05-01') -- 本周第几天，周日作为周的第一天
+(dayofweek('2022-05-01') + 5) % 7 + 1 -- 本周第几天，周一作为周的第一天
+dayofmonth('2022-05-01') -- 本月第几天
+datediff('2022-05-01', trunc('2022-05-01', 'Q')) + 1 本季度第几天
+date_sub('2022-05-01', (dayofweek('2022-05-01') + 5) % 7) -- 本周一的日期
+
 
 -- ks grouping_id 转 字段名
 default.getCubeGroupName(grouping__id,'gender,age_range,platform,paid_tag,is_first_send_gift,product,live_user_pay_role')  as grouping__name,
